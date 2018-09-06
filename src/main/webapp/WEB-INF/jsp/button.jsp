@@ -22,14 +22,35 @@
 
 		$('.arial').on('change', function() {
 			$('.arial').not(this).prop('checked', false);
-			$('#H').html($(this).val());
 			if ($(this).is(":checked")) {
 				$("#HDiv").attr('style', "display: true");
-				$('#H').html($(this).val() + "  --- html");
 				$("#CDiv").attr('style', "display: true");
-				$('#C').html($(this).val() + "  ---css");
 				$("#JDiv").attr('style', "display: true");
-				$('#J').html($(this).val() + "  ---js");
+				if($(this).val() == "Aria-busy_state"){
+					$('#H').html('Before first click:  <div aria-live="polite"> <button>Toggle details</button> </div> After first click, while data is loading: <div aria-live="polite" aria-busy="true"> <button aria-controls="details" aria-expanded="false">Toggle details</button>  <div id="details"></div> </div>');
+				} else if($(this).val() == "Arial-controls") {
+					$('#H').html('Create button in below formate -  Before first click: <div aria-live="polite">     <button>Toggle details</button> </div> After first click, while data is loading: <div aria-live="polite" aria-busy="true">     <button aria-controls="details" aria-expanded="false">Toggle details</button>     <div id="details"></div> </div> After the data is loaded: <div aria-live="polite" aria-busy="false">     <button aria-controls="details" aria-expanded="true">Toggle details</button>     <div id="details">Some data</div> </div> After second click: <div aria-live="polite" aria-busy="false">     <button aria-controls="details" aria-expanded="false">Toggle details</button>     <div id="details" style="display: none;">Some data</div> </div> ');
+				} else if($(this).val() == "Arial-current-time") {
+					$('#H').html('<ul>  <li><button>9am to 10am: Welcome</li>  <li><button aria-current="time" aria-pressed="true">10am to 11am: Keynote</button></li>  <li><button aria-pressed="false">11am to 11.30pm: Break</button></li>  <li><button aria-pressed="false">11.30am to 1pm: Workshop</button></li>  <li><button aria-pressed="false">1pm to 2pm: Lunch</button></li>  <li><button aria-pressed="false">2pm to 3pm: Lecture</button></li>  <li><button aria-pressed="false">3pm to 3.30pm: Break</button></li>  <li><button aria-pressed="false">3.30pm to 5pm: Workshop</button></li>  </ul>');
+				} else if($(this).val() == "Arial-current-true") {
+					$('#H').html('<ul> <li><button>9am to 10am: Welcome</li> <li><button aria-current="true">10am to 11am: Keynote</button></li> <li><button>11am to 11.30pm: Break</button></li> <li><button>11.30am to 1pm: Workshop</button></li> <li><button>1pm to 2pm: Lunch</button></li> <li><button>2pm to 3pm: Lecture</button></li> <li><button>3pm to 3.30pm: Break</button></li> <li><button>3.30pm to 5pm: Workshop</button></li> </ul>');
+				} else if($(this).val() == "Arial-current-date") {
+					$('#H').html('<ul> <li><button>Current Month August- year 2017</li> <li><button aria-current="Date" aria-pressed="true">1</button></li> <li><button aria-current="Date" aria-pressed="false">2</button></li> <li><button aria-current="Date" aria-pressed="false">3</button></li> <li><button aria-current="Date" aria-pressed="false">4</button></li> <li><button aria-current="Date" aria-pressed="false">5</button></li> <li><button aria-current="Date" aria-pressed="false">6</button></li> <li><button aria-current="Date" aria-pressed="false">7</button></li> </ul>');
+				} else if($(this).val() == "Aria-describedby") {
+					$('#H').html('<button aria-label="Close" aria-describedby="descriptionClose" onclick="myDialog.close()">X</button> For below div content must be hide through CSS, <div id="descriptionClose">Closing this window will discard any information entered and return you back to the main page</div>');
+				} else if($(this).val() == "Aria-details") {
+					$('#H').html('<button id="save_continue" class="btn app_button" aria-details="det">SAVE and CONTINUE</button> <p> See an <a href="#" id="det">Application of the product ordering</a>.</p>');
+				} else if($(this).val() == "Aria-hidden") {
+					$('#H').html('<button class="btn disabled" aria-disabled="true" tabindex="-1" aria-hidden="true">SAVE  and CONTINUE</button>');
+				} else if($(this).val() == "Aria-label") {
+					$('#H').html('<button aria-label="Download high definition movie">	Download </button>');
+				} else if($(this).val() == "Aria-labelledby") {
+					$('#H').html('<button aria-labelledby="info3"> Save </button> <p id="info3" class="hidden"> search queries and return to main menu </p>');
+				} else if($(this).val() == "Aria-roledescription") {
+					$('#H').html('<button role="button" aria-roledescription="attachment button">family_reunion.jpg</button>');
+				} else {
+					$('#H').empty();
+				}
 			}
 
 			else {
@@ -58,7 +79,7 @@
 
 	function modeldata(id) {
 		var modeldiv = $('#modalcontent');
-		//	modeldiv.empty();
+		modeldiv.empty();
 		modeldiv.append(id + "--content");
 		var modaltitle = $('#exampleModalLongTitle');
 		modaltitle.empty();
@@ -86,251 +107,247 @@
 								<div class="demo-checkbox"
 									style="height: 250px; overflow: auto; margin-left: -36px;">
 									<ul id="mylist">
-										<li><input type="checkbox" id="md_checkbox_15"
+										<li><input type="checkbox" id="md_checkbox_9"
 											class="arial filled-in chk-col-primary" value="Aria-expanded" />
-											<label for="md_checkbox_15"> aria-expanded <a href="#"
+											<label for="md_checkbox_9"> aria-expanded <a href="#"
 												data-toggle="modal" id="aria-expanded"
 												data-target="#exampleModalLong" onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
-										<li><input type="checkbox" id="md_checkbox_15"
+										<li><input type="checkbox" id="md_checkbox_10"
 											class="arial filled-in chk-col-primary" value="Arial-pressed" />
-											<label for="md_checkbox_15"> aria-pressed <a href="#"
+											<label for="md_checkbox_10"> aria-pressed <a href="#"
 												data-toggle="modal" id="aria-pressed"
 												data-target="#exampleModalLong" onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
-										<li><input type="checkbox" id="md_checkbox_15"
+										<li><input type="checkbox" id="md_checkbox_11"
 											class="arial filled-in chk-col-primary" value="Arial-atomic" />
-											<label for="md_checkbox_15"> aria-atomic <a href="#"
+											<label for="md_checkbox_11"> aria-atomic <a href="#"
 												data-toggle="modal" id="aria-atomic"
 												data-target="#exampleModalLong" onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
-										<li><input type="checkbox" id="md_checkbox_16"
+										<li><input type="checkbox" id="md_checkbox_12"
 											class="arial filled-in chk-col-success"	value="Aria-busy_state" /> 
-											<label for="md_checkbox_16">aria-busy (state) <a href="#" data-toggle="modal"
+											<label for="md_checkbox_12">aria-busy (state) <a href="#" data-toggle="modal"
 												id="aria-busy" data-target="#exampleModalLong"
 												onclick="modeldata(this.id)">
 												 <img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
-										<li><input type="checkbox" id="md_checkbox_17"
+										<li><input type="checkbox" id="md_checkbox_13"
 											class="arial filled-in chk-col-info" value="Arial-controls" />
-											<label for="md_checkbox_17"> aria-controls <a href="#" data-toggle="modal"
+											<label for="md_checkbox_13"> aria-controls <a href="#" data-toggle="modal"
 												id="aria-controls" data-target="#exampleModalLong"
 												onclick="modeldata(this.id)">
 												 <img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
-										<li><input type="checkbox" id="md_checkbox_18"
+										<li><input type="checkbox" id="md_checkbox_14"
 											class="arial filled-in chk-col-warning" value=" Dynamic aria-current = step " />
-											<label for="md_checkbox_18"> Dynamic aria-current ="step"<a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content=" Dynamic aria-current =step --- Content">
+											<label for="md_checkbox_14"> Dynamic aria-current ="step"<a href="#" data-toggle="modal"
+												id="dynamic-aria-current" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
-										<li><input type="checkbox" id="md_checkbox_18"
+										<li><input type="checkbox" id="md_checkbox_15"
 											class="arial filled-in chk-col-warning" value="Static aria-current=step" />
-											<label for="md_checkbox_18"> Static aria-current="step" <a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Static aria-current=step --- Content">
+											<label for="md_checkbox_15"> Static aria-current="step" <a href="#" data-toggle="modal"
+												id="static-aria-current" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+													<img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_16"
+											class="arial filled-in chk-col-warning" value="Arial-current-time" />
+											<label for="md_checkbox_16"> aria-current ="time"<a href="#" data-toggle="modal"
+												id="aria-current-time" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+													<img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_17"
+											class="arial filled-in chk-col-warning" value="Arial-current-true" />
+											<label for="md_checkbox_17"> aria-current="true"<a href="#" data-toggle="modal"
+												id="aria-current-true" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_18"
-											class="arial filled-in chk-col-warning" value="Arial-current=time" />
-											<label for="md_checkbox_18"> aria-current ="time"<a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-current=time --- Content">
-													<img alt="help" src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_18"
-											class="arial filled-in chk-col-warning" value="Arial-current=true" />
-											<label for="md_checkbox_18"> aria-current="true"<a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
-													<img alt="help" src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_18"
-											class="arial filled-in chk-col-warning" value="Arial-current=date" />
-											<label for="md_checkbox_18"> aria-current="date"<a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
+											class="arial filled-in chk-col-warning" value="Arial-current-date" />
+											<label for="md_checkbox_18"> aria-current="date"<a href="#" data-toggle="modal"
+												id="aria-current-date" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_19"
-											class="arial filled-in chk-col-primary"
-											value="Aria-describedby" /> <label for="md_checkbox_19">
-												aria-describedby<a href="#" title="Header"
-												data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
+											class="arial filled-in chk-col-primary"	value="Aria-describedby" /> 
+											<label for="md_checkbox_19"> aria-describedby <a href="#" data-toggle="modal"
+												id="aria-describedby" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help"	src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_20"
 											class="arial filled-in chk-col-success" value="Aria-details" />
-											<label for="md_checkbox_20"> aria-details<a href="#"
-												title="Header" data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
+											<label for="md_checkbox_20"> aria-details <a href="#" data-toggle="modal"
+												id="aria-details" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help"	src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_21"
 											class="arial filled-in chk-col-info" value="Aria-disabled=copy" />
-											<label for="md_checkbox_21"> aria-disabled="copy" <a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
-													<img alt="help" src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_21"
-											class="arial filled-in chk-col-info" value="Aria-disabled=move" />
-											<label for="md_checkbox_21"> aria-disabled="move" <a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
-													<img alt="help" src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_21"
-											class="arial filled-in chk-col-info" value="Aria-disabled=link" />
-											<label for="md_checkbox_21"> aria-disabled="link" <a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
-													<img alt="help" src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_21"
-											class="arial filled-in chk-col-info" value="Aria-disabled=none" />
-											<label for="md_checkbox_21"> aria-disabled="none" <a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
+											<label for="md_checkbox_21"> aria-disabled="copy" <a href="#" data-toggle="modal"
+												id="aria-disabled-copy" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_22"
-											class="arial filled-in chk-col-info" value="Aria-dropeffect" />
-											<label for="md_checkbox_22"> aria-dropeffect<a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
+											class="arial filled-in chk-col-info" value="Aria-disabled=move" />
+											<label for="md_checkbox_22"> aria-disabled="move" <a href="#" data-toggle="modal"
+												id="aria-disabled-move" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_23"
-											class="arial filled-in chk-col-info"
-											value="Aria-errormessage" /> <label for="md_checkbox_23">
-												aria-errormessage<a href="#" title="Header"
-												data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_24"
-											class="arial filled-in chk-col-info" value="Aria-flowto" />
-											<label for="md_checkbox_24"> aria-flowto<a href="#"
-												title="Header" data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_25"
-											class="arial filled-in chk-col-info"
-											value="Aria-grabbed_state" /> <label for="md_checkbox_25">
-												aria-grabbed (state)<a href="#" title="Header"
-												data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_26"
-											class="arial filled-in chk-col-info" value="Aria-haspopup" />
-											<label for="md_checkbox_26"> aria-haspopup<a href="#"
-												title="Header" data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_27"
-											class="arial filled-in chk-col-info"
-											value="Aria-hidden_state" /> <label for="md_checkbox_27">
-												aria-hidden (state)<a href="#" title="Header"
-												data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_28"
-											class="arial filled-in chk-col-info"
-											value="Aria-invalid_state" /> <label for="md_checkbox_28">
-												aria-invalid (state)<a href="#" title="Header"
-												data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_29"
-											class="arial filled-in chk-col-info"
-											value="Aria-keyshortcuts" /> <label for="md_checkbox_29">
-												aria-keyshortcuts<a href="#" title="Header"
-												data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox_30"
-											class="arial filled-in chk-col-info" value="Aria-label" /> <label
-											for="md_checkbox_30"> aria-label<a href="#"
-												title="Header" data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
-											</a>
-										</label></li>
-										<li><input type="checkbox" id="md_checkbox31"
-											class="arial filled-in chk-col-info" value="Aria-labelledby" />
-											<label for="md_checkbox_31"> aria-labelledby<a
-												href="#" title="Header" data-toggle="popover"
-												data-placement="top" data-content="Arial-atomic --- Content">
+											class="arial filled-in chk-col-info" value="Aria-disabled=link" />
+											<label for="md_checkbox_23"> aria-disabled="link" <a href="#" data-toggle="modal"
+												id="aria-disabled-link" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
 													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
+										<li><input type="checkbox" id="md_checkbox_24"
+											class="arial filled-in chk-col-info" value="Aria-disabled=none" />
+											<label for="md_checkbox_24"> aria-disabled="none" <a href="#" data-toggle="modal"
+												id="aria-disabled-none" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+													<img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_25"
+											class="arial filled-in chk-col-info" value="Aria-dropeffect" />
+											<label for="md_checkbox_25"> aria-dropeffect <a href="#" data-toggle="modal"
+												id="aria-dropeffect" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+													<img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_26"
+											class="arial filled-in chk-col-info" value="Aria-errormessage" /> 
+											<label for="md_checkbox_26">aria-errormessage <a href="#" data-toggle="modal"
+												id="aria-errormessage" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												 <img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_27"
+											class="arial filled-in chk-col-info" value="Aria-flowto" />
+											<label for="md_checkbox_27"> aria-flowto<a href="#" data-toggle="modal"
+												id="aria-flowto" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)"> 
+												<img alt="help"	src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_28"
+											class="arial filled-in chk-col-info" value="Aria-grabbed_state" /> 
+											<label for="md_checkbox_28">aria-grabbed (state) <a href="#" data-toggle="modal"
+												id="aria-grabbed" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help"	src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_29"
+											class="arial filled-in chk-col-info" value="Aria-haspopup" />
+											<label for="md_checkbox_29"> aria-haspopup <a href="#" data-toggle="modal"
+												id="aria-haspopup" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_30"
+											class="arial filled-in chk-col-info" value="Aria-hidden_state" /> <label for="md_checkbox_30">
+												aria-hidden (state)<a href="#" data-toggle="modal"
+												id="aria-hidden" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												 <img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_31"
+											class="arial filled-in chk-col-info"
+											value="Aria-invalid_state" /> <label for="md_checkbox_31">
+												aria-invalid (state) <a href="#" data-toggle="modal"
+												id="aria-invalid" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)"> 
+												<img alt="help" src="assets/images/help.png">
+											</a>
+										</label></li>
 										<li><input type="checkbox" id="md_checkbox_32"
-											class="arial filled-in chk-col-info" value="Aria-live" /> <label
-											for="md_checkbox_32"> aria-live<a href="#"
-												title="Header" data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
+											class="arial filled-in chk-col-info"
+											value="Aria-keyshortcuts" /> <label for="md_checkbox_32">
+												aria-keyshortcuts<a href="#" data-toggle="modal"
+												id="aria-keyshortcuts" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_33"
-											class="arial filled-in chk-col-info" value="Aria-owns" /> <label
-											for="md_checkbox_33"> aria-owns<a href="#"
-												title="Header" data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
+											class="arial filled-in chk-col-info" value="Aria-label" /> <label
+											for="md_checkbox_33"> aria-label <a href="#" data-toggle="modal"
+												id="aria-label" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help"	src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_34"
-											class="arial filled-in chk-col-info" value="Aria-relevant" />
-											<label for="md_checkbox_34"> aria-relevant<a href="#"
-												title="Header" data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
+											class="arial filled-in chk-col-info" value="Aria-labelledby" />
+											<label for="md_checkbox_34"> aria-labelledby <a href="#" data-toggle="modal"
+												id="aria-lablledby" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+													<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
 										<li><input type="checkbox" id="md_checkbox_35"
+											class="arial filled-in chk-col-info" value="Aria-live" /> <label
+											for="md_checkbox_35"> aria-live <a href="#" data-toggle="modal"
+												id="aria-live" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help"	src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_36"
+											class="arial filled-in chk-col-info" value="Aria-owns" /> <label
+											for="md_checkbox_36"> aria-owns <a href="#" data-toggle="modal"
+												id="aria-owns" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help"	src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_37"
+											class="arial filled-in chk-col-info" value="Aria-relevant" />
+											<label for="md_checkbox_37"> aria-relevant <a href="#" data-toggle="modal"
+												id="aria-relevant" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help"	src="assets/images/help.png">
+											</a>
+										</label></li>
+										<li><input type="checkbox" id="md_checkbox_38"
 											class="arial filled-in chk-col-info"
-											value="Aria-roledescription" /> <label for="md_checkbox_35">
-												aria-roledescription<a href="#" title="Header"
-												data-toggle="popover" data-placement="top"
-												data-content="Arial-atomic --- Content"> <img alt="help"
-													src="assets/images/help.png">
+											value="Aria-roledescription" /> <label for="md_checkbox_38">
+												aria-roledescription <a href="#" data-toggle="modal"
+												id="aria-roledescription" data-target="#exampleModalLong"
+												onclick="modeldata(this.id)">
+												<img alt="help" src="assets/images/help.png">
 											</a>
 										</label></li>
 									</ul>
@@ -370,17 +387,7 @@
 							</div>
 						</div>
 						<textarea id="H">    
-							<div class="container">
-								<h2>Button Styles</h2>
-								<button type="button" class="btn">Basic</button>
-								<button type="button" class="btn btn-default">Default</button>
-								<button type="button" class="btn btn-primary">Primary</button>
-								<button type="button" class="btn btn-success">Success</button>
-								<button type="button" class="btn btn-info">Info</button>
-								<button type="button" class="btn btn-warning">Warning</button>
-								<button type="button" class="btn btn-danger">Danger</button>
-								<button type="button" class="btn btn-link">Link</button>      
-							</div>
+							
 						</textarea>
 					</div>
 					<div class="textpanel col-md-3" id="CDiv">
@@ -445,9 +452,7 @@
 								</div>
 							</div>
 						</div>
-						<textarea id="J">    
-							JS is not required
-						</textarea>
+						<textarea id="J"></textarea>
 					</div>
 				</div>
 			</div>
